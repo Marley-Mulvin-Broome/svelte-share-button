@@ -1,6 +1,13 @@
 {
-	"name": "svelte-share-core",
+	"name": "@svelte-share/button",
 	"version": "0.0.1",
+	"author": {
+		"email": "marley.developer@gmail.com",
+		"name": "Marley Mulvin Broome",
+		"url": "https://www.marley-web.dev"
+	},
+	"description": "A button for sharing to social media in Svelte & SvelteKit.",
+	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
