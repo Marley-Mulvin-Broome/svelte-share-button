@@ -1,58 +1,66 @@
-# create-svelte
+# @svelte-share/button
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+A button for sharing to social media with Svelte.
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
+## Supported Components
 
-## Creating a project
+There are multiple npm packages for their respective social medias.
 
-If you're seeing this, you've probably already done this step. Congrats!
+- `@svelte-share/line`
+- `@svelte-share/x`
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## Usage
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+Usage of the `<ShareButton>` component is only recommended if you would like to implement a social media that isn't supported already.
 
-## Developing
+### Custom button example
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Below is an example of implementing a custom share button for the messaging app Line.
 
-```bash
-npm run dev
+```svelte
+<script lang="ts">
+  import { ShareButton } from '@svelte-share/button';
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+  const url = encodeURI(
+    `https://social-plugins.line.me/lineit/share?url=https://twitter.com/marley_eng`
+  );
+</script>
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+<ShareButton {url} --share-button-background-color="#00b900" --share-button-hover-color="#00b900">
+  <svg
+    class="share-icon"
+    slot="icon"
+    aria-label="LINE"
+    viewBox="0 0 512 512"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M512.017 227.437c-2.734 61.513-28.706 103.889-69.715 140.796-72.448 64.247-187.272 143.53-202.308 131.227-15.037-19.137 28.706-64.246-27.34-71.08C92.365 411.975.778 327.224.778 227.436c0-112.09 116.191-205.042 256.987-205.042 140.796 0 258.354 92.953 254.253 205.042z"
+      fill="#fff"
+      style="stroke-width:1.36695"
+      transform="translate(0 -5.565)"
+    /><path
+      d="M413.596 223.24H367.12m46.476-49.21h-49.21v98.42h49.21m-168.135 0v-98.42l73.816 98.42v-98.42m-121.659 98.42v-98.42m-90.218 0v98.42h50.577"
+      fill="none"
+      stroke="#00b900"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="24.25"
+    />
+  </svg>
 
-## Building
+  <span class="share-text"> 送る </span>
+</ShareButton>
 
-To build your library:
+<style>
+  .share-icon {
+    width: 2em;
+    height: 2em;
+  }
 
-```bash
-npm run package
-```
-
-To create a production version of your showcase app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
-
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```bash
-npm publish
+  .share-text {
+    font-size: 1.3em;
+    font-weight: 600;
+  }
+</style>
 ```
